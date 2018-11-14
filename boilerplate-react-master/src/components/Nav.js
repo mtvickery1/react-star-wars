@@ -10,7 +10,6 @@ const styles = {
     },
     navContentStyle: {
       height: "22px",
-      fontFamily: "'Montserrat', sans-serif",
       fontSize: "18px",
       fontWeight: "bold",
       fontStyle: "normal",
@@ -29,7 +28,7 @@ const styles = {
 
 const Nav = () =>
   <nav style={styles.navStyle}>
-    <div href="/" style={styles.navContentStyle}>
+    <div style={styles.navContentStyle}>
         SWStarter
     </div>
   </nav>;
