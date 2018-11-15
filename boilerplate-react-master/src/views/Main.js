@@ -86,6 +86,21 @@ export default class Home extends Component {
   };
 
   render() {
+
+    // Making Search Button Grey if Disabled
+    if (!this.state.search) {
+      var buttonBackground = {
+        border: "solid 1px #c4c4c4",
+        backgroundColor: "#c4c4c4"
+      }
+    } else {
+      buttonBackground = {
+        border: "solid 1px #0ab463",
+        backgroundColor: "#0ab463"
+      }
+    }
+    
+
     return (
       <div>
 
@@ -113,7 +128,7 @@ export default class Home extends Component {
             <br />
             <br />
             {/* Search Button */}
-            <SearchButton disabled={!this.state.search} onClick={this.handleFormSubmit} />
+            <SearchButton style={buttonBackground} disabled={!this.state.search} onClick={this.handleFormSubmit} />
           </form>
         </SearchContainer>
 
