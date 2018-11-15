@@ -1,7 +1,7 @@
 import React from "react";
 
 const SearchButton = props => {
-  console.log('state', props.state);
+  // console.log('state', props.state);
 
   // Making search button gray if disabled
   if (!props.state.search) {
@@ -24,7 +24,8 @@ const SearchButton = props => {
       height: "34px",
       borderRadius: "20px",
       border: buttonBackground.border,
-      backgroundColor: buttonBackground.backgroundColor
+      backgroundColor: buttonBackground.backgroundColor,
+      cursor: "pointer"
     },
     // Search Button Text
     searchButtonText: {

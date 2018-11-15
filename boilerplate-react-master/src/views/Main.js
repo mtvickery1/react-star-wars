@@ -3,10 +3,12 @@ import MainContainer from "../components/MainContainer";
 import SearchContainer from "../components/SearchContainer";
 import ResultsContainer from "../components/ResultsContainer";
 import SearchButton from "../components/SearchButton";
+import axios from "axios";
 
 // Styles
 const styles = {
 
+  //==================== SEARCH CONTAINER====================//
   // What Are You Searching For
   whatAreYouSearchingFor: {
     fontSize: "14px",
@@ -49,19 +51,54 @@ const styles = {
     paddingLeft: "10px",
     paddingTop: "10px",
     paddingBottom: "10px"
+  },
+  //==================== RESULTS CONTAINER====================//
+  // Title
+  resultsTitle: {
+    fontSize: "18px",
+    fontWeight: "bold",
+    fontStyle: "normal",
+    fontStretch: "normal",
+    lineHeight: "normal",
+    letterSpacing: "normal",
+    color: "#000000"
   }
+
 };
 
 export default class Home extends Component {
   state = {
     radioSelected: "people",
-    search: ""
+    search: "",
+    peopleResults: [],
+    movieResults: []
   };
 
-  componentDidUpdate() {
-    console.log('updated');
-    console.log(this.state.radioSelected);
+  componentDidMount() {
+    this.getPeople()
+    this.getMovie()
+  }
+
+  getPeople () {
+    return axios.get("https://swapi.co/api/people/")
+    .then((response) => {
+      console.log('response', response.data.results);
+      this.setState({ peopleResults: response.data.results })
+    })
   };
+
+  getMovie () {
+    return axios.get("https://swapi.co/api/films/")
+    .then((response) => {
+      console.log('response', response.data.results);
+      this.setState({ movieResults: response.data.results })
+    })
+  };
+
+  // componentDidUpdate() {
+  //   console.log('updated');
+  //   console.log(this.state.radioSelected);
+  // };
 
   // getInitialState() {
   //   return {search: ""}
@@ -76,25 +113,43 @@ export default class Home extends Component {
 
   handleFormSubmit = () => {
     console.log(this.state.radioSelected);
-
+    this.getPeople()
     // People Search
     if (this.state.radioSelected === "people") {
       console.log("Searching People");
+
     }
 
     // Movie Search
     if (this.state.radioSelected === "movies") {
       console.log("Searching Movies");
+      this.getMovie()
     }
   };
 
   render() {
 
+    // var url = "https://www.omdbapi.com/?t=";
+    // var title = "zoolander";
+    // var details = "&y=&plot=short&apikey=trilogy";
+    // var queryURL = url + title + details;
+
+    // $.ajax({
+    //   url: queryURL,
+    //   method: "GET"
+    // }).then(function (response) {
+    //   console.log(response);
+    //   console.log(response.Runtime);
+    //   console.log(response.Title);
+    //   console.log(response.Year);
+    //   console.log(response.Plot);
+    // });
+
     // Changing placeholder based on search choice 
     if (this.state.radioSelected === "people") {
       var placeholder = "e.g. Chewbacca, Yoda, Boba Fett"
     } else {
-      placeholder = "e.g. The Phantom Menace, Return of The Jedi"
+      placeholder = "e.g. The Phantom Menace, Return of the Jedi"
     }
 
     return (
@@ -128,7 +183,12 @@ export default class Home extends Component {
               <SearchButton state={this.state} disabled={!this.state.search} onClick={this.handleFormSubmit} />
             </form>
           </SearchContainer>
-          <ResultsContainer />
+          <ResultsContainer>
+            <div style={styles.resultsTitle}>
+              Results
+            </div>
+            <hr />
+          </ResultsContainer>
         </MainContainer>
 
       </div>
