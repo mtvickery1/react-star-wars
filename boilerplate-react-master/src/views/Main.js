@@ -52,12 +52,13 @@ const styles = {
 
 export default class Home extends Component {
   state = {
-    radioSelected: 'people',
+    radioSelected: "people",
     search: ""
   };
 
   componentDidUpdate() {
     console.log('updated');
+    console.log(this.state.radioSelected);
   };
 
   // getInitialState() {
@@ -87,7 +88,7 @@ export default class Home extends Component {
 
   render() {
 
-    // Making Search Button Grey if Disabled
+    // Making search button gray if disabled
     if (!this.state.search) {
       var buttonBackground = {
         border: "solid 1px #c4c4c4",
@@ -100,6 +101,12 @@ export default class Home extends Component {
       }
     }
     
+    // Changing placeholder based on search choice 
+    if (this.state.radioSelected === "people") {
+      var placeholder = "e.g. Chewbacca, Yoda, Boba Fett"
+    } else {
+      placeholder = "e.g. The Phantom Menace, Return of The Jedi"
+    }
 
     return (
       <div>
@@ -124,7 +131,7 @@ export default class Home extends Component {
             <br />
             <br />
             {/* Search Box */}
-            <input style={styles.searchBox} type="text" value={this.state.search} onChange={this.handleInputChange} name="search" placeholder="e.g. Chewbacca, Yoda, Boba Fett" />
+            <input style={styles.searchBox} type="text" value={this.state.search} onChange={this.handleInputChange} name="search" placeholder={placeholder} />
             <br />
             <br />
             {/* Search Button */}
