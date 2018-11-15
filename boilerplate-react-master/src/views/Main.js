@@ -87,19 +87,6 @@ export default class Home extends Component {
   };
 
   render() {
-
-    // Making search button gray if disabled
-    if (!this.state.search) {
-      var buttonBackground = {
-        border: "solid 1px #c4c4c4",
-        backgroundColor: "#c4c4c4"
-      }
-    } else {
-      buttonBackground = {
-        border: "solid 1px #0ab463",
-        backgroundColor: "#0ab463"
-      }
-    }
     
     // Changing placeholder based on search choice 
     if (this.state.radioSelected === "people") {
@@ -135,7 +122,7 @@ export default class Home extends Component {
             <br />
             <br />
             {/* Search Button */}
-            <SearchButton style={buttonBackground} disabled={!this.state.search} onClick={this.handleFormSubmit} />
+            <SearchButton state={this.state} disabled={!this.state.search} onClick={this.handleFormSubmit} />
           </form>
         </SearchContainer>
 

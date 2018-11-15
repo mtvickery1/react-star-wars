@@ -1,16 +1,30 @@
 import React from "react";
 
 const SearchButton = props => {
+  console.log('state', props.state);
 
-const styles = {
+  // Making search button gray if disabled
+  if (!props.state.search) {
+    var buttonBackground = {
+      border: "solid 1px #c4c4c4",
+      backgroundColor: "#c4c4c4"
+    }
+  } else {
+    buttonBackground = {
+      border: "solid 1px #0ab463",
+      backgroundColor: "#0ab463"
+    }
+  }
+
+  const styles = {
     // Search Button
     searchButton: {
       position: "relative",
       width: "100%",
       height: "34px",
       borderRadius: "20px",
-      border: props.style.border,
-      backgroundColor: props.style.backgroundColor
+      border: buttonBackground.border,
+      backgroundColor: buttonBackground.backgroundColor
     },
     // Search Button Text
     searchButtonText: {
@@ -35,7 +49,7 @@ const styles = {
         SEARCH
       </div>
     </button>
-    );
-  };
+  );
+};
 
 export default SearchButton;
