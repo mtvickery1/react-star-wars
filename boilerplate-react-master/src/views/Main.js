@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import MainContainer from "../components/MainContainer";
 import SearchContainer from "../components/SearchContainer";
+import ResultsContainer from "../components/ResultsContainer";
 import SearchButton from "../components/SearchButton";
 
 // Styles
@@ -87,7 +89,7 @@ export default class Home extends Component {
   };
 
   render() {
-    
+
     // Changing placeholder based on search choice 
     if (this.state.radioSelected === "people") {
       var placeholder = "e.g. Chewbacca, Yoda, Boba Fett"
@@ -98,33 +100,36 @@ export default class Home extends Component {
     return (
       <div>
 
-        {/* Search Container */}
-        <SearchContainer>
-          <div style={styles.whatAreYouSearchingFor}>
-            What are you searching for?
-          </div>
-          <br />
-          <form>
-            {/* People Radio */}
-            <input type="radio" id='people' name="people" value="people" checked={this.state.radioSelected === 'people'} onChange={(e) => this.setState({ radioSelected: e.target.value })} />
-            <span style={styles.people}>
-              People
-            </span>
-            {/* Movies Radio */}
-            <input type="radio" id='movies' name="movies" value="movies" checked={this.state.radioSelected === 'movies'} onChange={(e) => this.setState({ radioSelected: e.target.value })} />
-            <span style={styles.movies}>
-              Movies
-            </span>
+        <MainContainer>
+          {/* Search Container */}
+          <SearchContainer>
+            <div style={styles.whatAreYouSearchingFor}>
+              What are you searching for?
+            </div>
             <br />
-            <br />
-            {/* Search Box */}
-            <input style={styles.searchBox} type="text" value={this.state.search} onChange={this.handleInputChange} name="search" placeholder={placeholder} />
-            <br />
-            <br />
-            {/* Search Button */}
-            <SearchButton state={this.state} disabled={!this.state.search} onClick={this.handleFormSubmit} />
-          </form>
-        </SearchContainer>
+            <form>
+              {/* People Radio */}
+              <input type="radio" id='people' name="people" value="people" checked={this.state.radioSelected === 'people'} onChange={(e) => this.setState({ radioSelected: e.target.value })} />
+              <span style={styles.people}>
+                People
+              </span>
+              {/* Movies Radio */}
+              <input type="radio" id='movies' name="movies" value="movies" checked={this.state.radioSelected === 'movies'} onChange={(e) => this.setState({ radioSelected: e.target.value })} />
+              <span style={styles.movies}>
+                Movies
+              </span>
+              <br />
+              <br />
+              {/* Search Box */}
+              <input style={styles.searchBox} type="text" value={this.state.search} onChange={this.handleInputChange} name="search" placeholder={placeholder} />
+              <br />
+              <br />
+              {/* Search Button */}
+              <SearchButton state={this.state} disabled={!this.state.search} onClick={this.handleFormSubmit} />
+            </form>
+          </SearchContainer>
+          <ResultsContainer />
+        </MainContainer>
 
       </div>
     );

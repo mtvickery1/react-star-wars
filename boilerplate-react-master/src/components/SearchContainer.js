@@ -9,8 +9,9 @@ const styles = {
       boxShadow: "0 1px 2px 0 rgba(132, 132, 132, 0.75)",
       border: "solid 1px #dadada",
       backgroundColor: "#ffffff",
-      margin: "80px 822px 590px 208px",
-      padding: "30px"
+      margin: "0 30px 0 0",
+      padding: "30px",
+      float: "left"
     }
   };
 

@@ -6,7 +6,8 @@ const styles = {
       width: "100%",
       height: "50px",
       boxShadow: "0 2px 0 0 #dadada",
-      position: "relative"
+      position: "relative",
+      margin: "0 0 30px 0"
     },
     navContentStyle: {
       height: "22px",
