@@ -10,7 +10,8 @@ const styles = {
     border: "solid 1px #dadada",
     backgroundColor: "#ffffff",
     padding: "30px",
-    float: "left"
+    float: "left",
+    overflow: "hidden"
   }
 };
 

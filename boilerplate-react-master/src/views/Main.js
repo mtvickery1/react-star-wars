@@ -3,6 +3,7 @@ import MainContainer from "../components/MainContainer";
 import SearchContainer from "../components/SearchContainer";
 import ResultsContainer from "../components/ResultsContainer";
 import SearchButton from "../components/SearchButton";
+import ResultsItem from "../components/ResultsItem";
 import axios from "axios";
 
 // Styles
@@ -75,8 +76,8 @@ export default class Home extends Component {
   };
 
   componentDidMount() {
-    this.getPeople()
-    this.getMovie()
+    // this.getPeople()
+    // this.getMovie()
   }
 
   getPeople () {
@@ -129,22 +130,6 @@ export default class Home extends Component {
 
   render() {
 
-    // var url = "https://www.omdbapi.com/?t=";
-    // var title = "zoolander";
-    // var details = "&y=&plot=short&apikey=trilogy";
-    // var queryURL = url + title + details;
-
-    // $.ajax({
-    //   url: queryURL,
-    //   method: "GET"
-    // }).then(function (response) {
-    //   console.log(response);
-    //   console.log(response.Runtime);
-    //   console.log(response.Title);
-    //   console.log(response.Year);
-    //   console.log(response.Plot);
-    // });
-
     // Changing placeholder based on search choice 
     if (this.state.radioSelected === "people") {
       var placeholder = "e.g. Chewbacca, Yoda, Boba Fett"
@@ -188,6 +173,14 @@ export default class Home extends Component {
               Results
             </div>
             <hr />
+
+            {this.state.peopleResults.map(character => {
+              console.log('character', character);
+              for (var i = this.state.peopleResults.length; i > 0; i--) {
+                return <ResultsItem people={character}/>
+              }
+            })}
+
           </ResultsContainer>
         </MainContainer>
 
